@@ -11,7 +11,9 @@ namespace cs_practice
     {
         static void Main(string[] args)
         {
+            ForegroundColor = ConsoleColor.Green;
             WriteLine("hello");
+            
 
 
 
