@@ -11,12 +11,28 @@ namespace cs_practice
     {
         static void Main(string[] args)
         {
-            ForegroundColor = ConsoleColor.Green;
-            WriteLine("hello");
-            
+            /*
+            int a = 3;
+            WriteLine(a);
+            a++;
+            WriteLine(a);
+            a--;
+            WriteLine(a);
+            WriteLine(++a);
+            WriteLine(a++);
+            WriteLine(a);
+            */
+
+            #region 관계연산자
+            WriteLine($"3 > 4 : {3 > 4}");
+            WriteLine($"3 < 4 : {3 < 4}");
+            WriteLine($"3 >= 4 : {3 >= 4}");
+            WriteLine($"3 <= 4 : {3 <= 4}");
+            WriteLine($"3 == 4 : {3 == 4}");
+            WriteLine($"3 != 4 : {3 != 4}");
 
 
-
+            #endregion
         }
     }
 }
