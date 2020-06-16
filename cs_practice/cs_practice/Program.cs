@@ -9,63 +9,84 @@ namespace cs_practice
 {
     class Program
     {
+        enum Days { 월, 화, 수, 목, 금, 토, 일}
         static void Main(string[] args)
         {
             /*
-            int a = 3;
-            WriteLine(a);
-            a++;
-            WriteLine(a);
-            a--;
-            WriteLine(a);
-            WriteLine(++a);
-            WriteLine(a++);
-            WriteLine(a);
+            #region 정수분류
+            int input_int = 0;
+            string input_string = "";
+
+            Write("정수를 입력하세요 :  ");
+            input_string = ReadLine();
+            input_int = int.Parse(input_string);
+
+            if(input_int > 0)
+            {
+                Write("양수 이며 ");
+                if(input_int % 2 == 0)
+                    WriteLine("짝수 입니다");                
+                else
+                    WriteLine("홀수 입니다");
+            }
+            else if (input_int < 0)
+            {
+                WriteLine("음수 입니다");
+            }
+            else
+                WriteLine("0 입니다");
+            #endregion
+            
+            Random r = new Random();
+            int score = r.Next(0, 101);
+            WriteLine("점수: " + score);
+            if (score > 100 || score < 0)
+                WriteLine("0~100 사이의 수를 입력해 주세요");
+            else if (score >= 90)
+                WriteLine("A");
+            else if (score >= 80)
+                WriteLine("B");
+            else if (score >= 70)
+                WriteLine("C");
+            else if (score >= 60)
+                WriteLine("D");
+            else
+                WriteLine("F");
             */
 
-            #region 관계연산자
-            //WriteLine($"3 > 4 : {3 > 4}");
-            //WriteLine($"3 < 4 : {3 < 4}");
-            //WriteLine($"3 >= 4 : {3 >= 4}");
-            //WriteLine($"3 <= 4 : {3 <= 4}");
-            //WriteLine($"3 == 4 : {3 == 4}");
-            //WriteLine($"3 != 4 : {3 != 4}");
-            #endregion
-            #region 관계논리연산자
-            //WriteLine($"&&");
-            //WriteLine($"1 > 0 && 4 < 5 : {1 > 0 && 4 < 5}");
-            //WriteLine($"1 > 0 && 4 > 5 : {1 > 0 && 4 > 5}");
-            //WriteLine($"1 == 0 && 4 > 5 : {1 == 0 && 4 > 5}");
-            //WriteLine($"1 == 0 && 4 < 5 : {1 == 0 && 4 < 5}");
+            Random r = new Random();
+            Days days = (Days)r.Next(0, 7);
+            WriteLine(days);
+            //Write("요일을 입력하세요(월,화,수,목,금,토,일): ");
+            //string day = ReadLine();
+            switch (days)
+            {
+                case Days.월:
+                    WriteLine("Monday");
+                    break;
+                case Days.화:
+                    WriteLine("Tuesday");
+                    break;
+                case Days.수:
+                    WriteLine("Wednesday");
+                    break;
+                case Days.목:
+                    WriteLine("Thursday");
+                    break;
+                case Days.금:
+                    WriteLine("Friday");
+                    break;
+                case Days.토:
+                    WriteLine("Saturday");
+                    break;
+                case Days.일:
+                    WriteLine("Sunday");
+                    break;
+                default:
+                    WriteLine($"{days}는 요일이 아닙니다");
+                    break;
+            }
 
-            //WriteLine($"||");
-            //WriteLine($"1 > 0 || 4 < 5 : {1 > 0 || 4 < 5}");
-            //WriteLine($"1 > 0 || 4 > 5 : {1 > 0 || 4 > 5}");
-            //WriteLine($"1 == 0 || 4 > 5 : {1 == 0 || 4 > 5}");
-            //WriteLine($"1 == 0 || 4 < 5 : {1 == 0 || 4 < 5}");
-
-            #endregion
-            int a = 100;
-            a += 90;
-            WriteLine(a);
-            a -= 80;
-            WriteLine(a);
-            a *= 70;
-            WriteLine(a);
-            a /= 60;
-            WriteLine(a);
-            a %= 50;
-            WriteLine(a);
-            a &= 40;
-            WriteLine(a);
-            a |= 30;
-            WriteLine(a);
-            a ^= 20;
-            WriteLine(a);
-            a <<= 10;
-            WriteLine(a);
-            a >>= 1;
-            WriteLine(a);
         }
     }
 }
