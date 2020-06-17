@@ -9,82 +9,60 @@ namespace cs_practice
 {
     class Program
     {
-        enum Days { 월, 화, 수, 목, 금, 토, 일}
         static void Main(string[] args)
         {
             /*
-            #region 정수분류
-            int input_int = 0;
-            string input_string = "";
+            #region 주사위 게임
+            Random random = new Random();
 
-            Write("정수를 입력하세요 :  ");
-            input_string = ReadLine();
-            input_int = int.Parse(input_string);
-
-            if(input_int > 0)
-            {
-                Write("양수 이며 ");
-                if(input_int % 2 == 0)
-                    WriteLine("짝수 입니다");                
-                else
-                    WriteLine("홀수 입니다");
-            }
-            else if (input_int < 0)
-            {
-                WriteLine("음수 입니다");
-            }
-            else
-                WriteLine("0 입니다");
+            WriteLine("===  주사위 게임 ===");
+            int number = random.Next(0, 6) + 1;
+            WriteLine($"{number}이 나왔습니다");
+            WriteLine($"반대편 눈은{7-number} 입니다");
             #endregion
-            
-            Random r = new Random();
-            int score = r.Next(0, 101);
-            WriteLine("점수: " + score);
-            if (score > 100 || score < 0)
-                WriteLine("0~100 사이의 수를 입력해 주세요");
-            else if (score >= 90)
-                WriteLine("A");
-            else if (score >= 80)
-                WriteLine("B");
-            else if (score >= 70)
-                WriteLine("C");
-            else if (score >= 60)
-                WriteLine("D");
-            else
-                WriteLine("F");
+
+            int i = 0;
+            int sum = 0;
+            while(i < 100)
+            {
+                i++;
+                sum += i;
+                WriteLine(sum);
+            }
             */
 
-            Random r = new Random();
-            Days days = (Days)r.Next(0, 7);
-            WriteLine(days);
-            //Write("요일을 입력하세요(월,화,수,목,금,토,일): ");
-            //string day = ReadLine();
-            switch (days)
+            
+            ForegroundColor = ConsoleColor.Red;
+            for( int i = 0; i < 10; i++)
             {
-                case Days.월:
-                    WriteLine("Monday");
-                    break;
-                case Days.화:
-                    WriteLine("Tuesday");
-                    break;
-                case Days.수:
-                    WriteLine("Wednesday");
-                    break;
-                case Days.목:
-                    WriteLine("Thursday");
-                    break;
-                case Days.금:
-                    WriteLine("Friday");
-                    break;
-                case Days.토:
-                    WriteLine("Saturday");
-                    break;
-                case Days.일:
-                    WriteLine("Sunday");
-                    break;
-                default:
-                    WriteLine($"{days}는 요일이 아닙니다");
-                    break;
+                WriteLine(i + 1);
+            }
+            for (int i = 10; i > 0; i--)
+            {
+                WriteLine(i);
+            }
+            ForegroundColor = ConsoleColor.Green;
+            for( int sum = 0, i = 0 ; i < 100; i++ )
+            {
+                WriteLine(sum += (i + 1));
+            }
+            ForegroundColor = ConsoleColor.Blue;
+            for( int i = 0; i < 11; i++)
+            {
+                WriteLine(1 << i);
+                //WriteLine(Math.Pow(2,i));
+                
+            }
+            ForegroundColor = ConsoleColor.White;
+            for( int i = 0; i < 5; i++)
+            {
+                WriteLine(2 * i + 1);
+            }
+
+            for( int i = 1; i <= 1024; i *= 2)
+            {
+                if (i == 64) continue;
+                WriteLine(i);
             }
 
         }
