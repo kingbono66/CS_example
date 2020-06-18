@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,60 +12,85 @@ namespace cs_practice
     {
         static void Main(string[] args)
         {
-            /*
-            #region 주사위 게임
-            Random random = new Random();
-
-            WriteLine("===  주사위 게임 ===");
-            int number = random.Next(0, 6) + 1;
-            WriteLine($"{number}이 나왔습니다");
-            WriteLine($"반대편 눈은{7-number} 입니다");
-            #endregion
-
             int i = 0;
-            int sum = 0;
-            while(i < 100)
-            {
-                i++;
-                sum += i;
-                WriteLine(sum);
-            }
-            */
+            int k = 0;
+            int j = 0;
 
-            
-            ForegroundColor = ConsoleColor.Red;
-            for( int i = 0; i < 10; i++)
-            {
-                WriteLine(i + 1);
-            }
-            for (int i = 10; i > 0; i--)
+            i = 1;
+            while(i <= 201 )
             {
                 WriteLine(i);
-            }
-            ForegroundColor = ConsoleColor.Green;
-            for( int sum = 0, i = 0 ; i < 100; i++ )
-            {
-                WriteLine(sum += (i + 1));
-            }
-            ForegroundColor = ConsoleColor.Blue;
-            for( int i = 0; i < 11; i++)
-            {
-                WriteLine(1 << i);
-                //WriteLine(Math.Pow(2,i));
-                
-            }
-            ForegroundColor = ConsoleColor.White;
-            for( int i = 0; i < 5; i++)
-            {
-                WriteLine(2 * i + 1);
+                i += 4;
             }
 
-            for( int i = 1; i <= 1024; i *= 2)
+            for( i = 1; i <= 9; i++ )
             {
-                if (i == 64) continue;
-                WriteLine(i);
+                for(k = 1; k <= 9; k++)
+                    Write(i*k +"\t");
+                WriteLine("");
             }
 
+            for( i = 0; i < 5; i++)
+            {
+                for( k = 0; k <= i; k++)
+                    Write("*");
+                WriteLine("");
+            }
+
+
+            WriteLine("111111111");
+            for (i = 0; i < 5; i++)
+            {
+                for (k = 0; k < (5 - i); k++)
+                    Write("*");
+                WriteLine("");
+            }
+
+
+            WriteLine("22222222222");
+            for (i = 0; i < 5; i++)
+            {
+                for (k = 0; k < 5; k++)
+                {
+                    if (i < (4-k))
+                        Write(" ");
+                    else
+                        Write("*");
+                }
+                WriteLine("");
+            }
+
+
+            WriteLine("333333");
+            for (i = 0; i < 5; i++)
+            {
+                for (j = 0; j < i; j++)
+                    Write(" ");
+                for (k = 0; k < (5-i); k++)
+                    Write("*");
+                WriteLine("");
+            }
+
+
+            WriteLine("4444444");
+            for (i = 0; i < 4; i++)
+            {
+                for (j = 0; j < (3-i); j++)
+                    Write(" ");
+                for (k = 0; k < (i*2+1); k++)
+                    Write("*");
+                WriteLine("");
+            }
+
+            WriteLine("555555");
+            for (i = 0; i < 7; i++)
+            {
+                for (j = 0; i<4?(j<i):(j<(6-i)); j++)
+                    Write(" ");
+                for (k = 0; i<4?(k<(4-i)):(k<(i-2)); k++)
+                    Write("* ");
+                WriteLine("");
+            }
         }
     }
 }
