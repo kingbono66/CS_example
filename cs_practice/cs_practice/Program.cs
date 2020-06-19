@@ -48,15 +48,15 @@ namespace cs_practice
                     gameResult = (GameResult)2;
 
                 //출력
-                switch((int)gameResult)
+                switch(gameResult)
                 {
-                    case 1: WriteLine($"축하합니다 ^0^ 당신은 {gameResult} 하셨습니다!!!\n\n");
+                    case GameResult.승리: WriteLine($"축하합니다 ^0^ 당신은 {gameResult} 하셨습니다!!!\n\n");
                         gameContinueFlag = false;
                         break;
-                    case 2: WriteLine($"안타깝네요 ㅠㅠ 당신은 {gameResult} 하셨습니다!!!\n\n");
+                    case GameResult.패배: WriteLine($"안타깝네요 ㅠㅠ 당신은 {gameResult} 하셨습니다!!!\n\n");
                         gameContinueFlag = false;
                         break;
-                    case 3: WriteLine($"{gameResult} 입니다 ~.~\n\n");
+                    case GameResult.무승부: WriteLine($"{gameResult} 입니다 ~.~\n\n");
                         WriteLine("=======재경기======");
                         break;
                 }
