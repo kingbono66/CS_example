@@ -39,16 +39,16 @@ namespace cs_practice
                 WriteLine($"\n당신의 선택은 {userAction}");
                 WriteLine($"컴퓨터의 선택은 {comAction}\n");
 
-                if(userAction == comAction)
-                    gameResult = (GameResult)3;
-                else if(((int)userAction - (int)comAction) == 1 
-                            || ((int)userAction - (int)comAction) == -2 )
-                    gameResult = (GameResult)1;                
+                if (userAction == comAction)
+                    gameResult = GameResult.무승부;
+                else if (((int)userAction - (int)comAction) == 1
+                            || ((int)userAction - (int)comAction) == -2)
+                    gameResult = GameResult.승리;
                 else
-                    gameResult = (GameResult)2;
+                    gameResult = GameResult.패배;
 
                 //출력
-                switch(gameResult)
+                switch (gameResult)
                 {
                     case GameResult.승리: WriteLine($"축하합니다 ^0^ 당신은 {gameResult} 하셨습니다!!!\n\n");
                         gameContinueFlag = false;
