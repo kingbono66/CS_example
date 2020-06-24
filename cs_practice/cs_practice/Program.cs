@@ -10,40 +10,57 @@ namespace cs_practice
 {
     class Program
     {
-               
+
         static void Main(string[] args)
         {
-            int a = 123, b = 8;
+            CursorVisible = false;
+            //선언부
+            int x = 5, y = 2;
 
-            WriteLine(Plus( a, b));
-            WriteLine(Minus(a, b));
-            WriteLine(Multi(a, b));
-            WriteLine(divide(a, b));
 
-        }
-        static int Plus(int x, int y)
-        {
-            WriteLine("더하기 연산");
-            return x+y;
-        }
-        static int Minus(int x, int y)
-        {
-            WriteLine("빼기 연산");
-            return x-y;
-        }
-        static int Multi(int x, int y)
-        {
-            WriteLine("곱하기 연산");
-            return x*y;
-        }
-        static int divide(int x, int y)
-        {
-            WriteLine("나누기 연산");
-            int result = 0;
-            if( y != 0 )
-                result = x / y;
 
-            return result;
+            //실행부
+            while (true)
+            {
+                //초기화
+                //Clear();
+
+                //위치세팅
+                SetCursorPosition(x, y);
+
+                //출력
+                Write("^^");
+
+                //키보드입력
+                ConsoleKey key = ReadKey(true).Key;
+                CharacterClear(x, y);
+
+                switch (key)
+                {
+                    case ConsoleKey.UpArrow:
+                        y--;
+                        break;
+                    case ConsoleKey.DownArrow:
+                        y++;
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        x--;
+                        break;
+                    case ConsoleKey.RightArrow:
+                        x++;
+                        break;
+                }
+                if (x < 0) x = 0;
+                if (y < 0) y = 0;
+
+            }
         }
+
+        static void CharacterClear(int x, int y)
+        {
+            SetCursorPosition(x, y);
+            Write("  ");
+        }
+
     }
 }
