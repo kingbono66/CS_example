@@ -10,64 +10,40 @@ namespace cs_practice
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            int currentPointNum = 3;
+            int currentPointNum = 10;
             int currentXPosition = 0;
             int currentYPosition = 3;
             string character = "';,,;'";
             string pointChar = "*";
             int windowSizeX = 70;
             int windowSizeY = 30;
-            int point1XPosition = 0;
-            int point1YPosition = 0;
-            int point2XPosition = 0;
-            int point2YPosition = 0;
-            int point3XPosition = 0;
-            int point3YPosition = 0;
-            bool isExitstPoint1 = true;
-            bool isExitstPoint2 = true;
-            bool isExitstPoint3 = true;
+            int[,] points = new int[currentPointNum, 3];  //x,y,isVisible ( 1=visible 0=invisible)
 
-            InitializeGame(windowSizeX, windowSizeY, ref point1XPosition, ref point1YPosition, 
-                ref point2XPosition, ref point2YPosition, ref point3XPosition, ref point3YPosition);
+            InitializeGame(windowSizeX, windowSizeY, points);
             PrintIntro();
             while(currentPointNum > 0)
-            {                
-                PrintCurrentState(currentPointNum, currentXPosition, currentYPosition, character, pointChar,
-                        point1XPosition, point1YPosition, point2XPosition, point2YPosition, point3XPosition, point3YPosition,
-                        isExitstPoint1, isExitstPoint2, isExitstPoint3);
+            {
+                PrintCurrentState(currentPointNum, currentXPosition, currentYPosition, character, pointChar, points);
                 GetUserAction(ref currentXPosition, ref currentYPosition);                
                 MovementVerify(ref currentXPosition, ref currentYPosition, windowSizeX, windowSizeY);
-                ColisionVerify(ref currentPointNum, currentXPosition, currentYPosition, 
-                    point1XPosition, point1YPosition, point2XPosition, point2YPosition, point3XPosition, point3YPosition,
-                        ref isExitstPoint1, ref isExitstPoint2, ref isExitstPoint3);
+                ColisionVerify(ref currentPointNum, currentXPosition, currentYPosition, points);
             }
             PrintEnding(windowSizeX, windowSizeY);
         }
 
-        private static void ColisionVerify(ref int currentPointNum, int currentXPosition, int currentYPosition, 
-            int point1XPosition, int point1YPosition, int point2XPosition, int point2YPosition, int point3XPosition, int point3YPosition, 
-            ref bool isExitstPoint1, ref bool isExitstPoint2, ref bool isExitstPoint3)
+        private static void ColisionVerify(ref int currentPointNum, int currentXPosition, int currentYPosition, int[,] points )
         {
-            if(isExitstPoint1 && currentYPosition == point1YPosition && currentXPosition > (point1XPosition - 6 ) && currentXPosition <= point1XPosition)
+            for (int i = 0; i < points.GetLength(0); i++)
             {
-                isExitstPoint1 = false;
-                currentPointNum--;
-                PrintEffect(currentXPosition, currentYPosition);
-            }
-            if (isExitstPoint2 && currentYPosition == point2YPosition && currentXPosition > (point2XPosition - 6) && currentXPosition <= point2XPosition)
-            {
-                isExitstPoint2 = false;
-                currentPointNum--;
-                PrintEffect(currentXPosition, currentYPosition);
-            }
-            if (isExitstPoint3 && currentYPosition == point3YPosition && currentXPosition > (point3XPosition - 6) && currentXPosition <= point3XPosition)
-            {
-                isExitstPoint3 = false;
-                currentPointNum--;
-                PrintEffect(currentXPosition, currentYPosition);
+                if (points[i, 2] == 1 && currentYPosition == points[i, 1] && currentXPosition > (points[i, 0] - 6) && currentXPosition <= points[i, 0])
+                {
+                    points[i, 2] = 0;
+                    SetCursorPosition(points[i, 0], points[i, 1]);
+                    currentPointNum--;
+                    PrintEffect(currentXPosition, currentYPosition);
+                }
             }
         }
 
@@ -114,27 +90,18 @@ namespace cs_practice
             if (currentYPosition > (windowSizeY - 1)) currentYPosition = (windowSizeY - 1);
         }
 
-        private static void PrintCurrentState(int currentPointNum, int currentXPosition, int currentYPosition, string character, string pointChar,
-            int point1XPosition, int point1YPosition, int point2XPosition, int point2YPosition, int point3XPosition, int point3YPosition,
-            bool isExitstPoint1, bool isExitstPoint2, bool isExitstPoint3)
+        private static void PrintCurrentState(int currentPointNum, int currentXPosition, int currentYPosition, string character, string pointChar, int[,] points )
         {
             PrintHeader(currentPointNum);
             SetCursorPosition(currentXPosition, currentYPosition);
             Write(character);
-            if( isExitstPoint1)
+            for( int i = 0; i < points.GetLength(0); i++ )
             {
-                SetCursorPosition(point1XPosition, point1YPosition);
-                Write(pointChar);
-            }
-            if (isExitstPoint2)
-            {
-                SetCursorPosition(point2XPosition, point2YPosition);
-                Write(pointChar);
-            }
-            if (isExitstPoint3)
-            {
-                SetCursorPosition(point3XPosition, point3YPosition);
-                Write(pointChar);
+                if( points[i, 2] == 1)
+                {
+                    SetCursorPosition(points[i, 0], points[i, 1]);
+                    Write(pointChar);
+                }
             }
         }
 
@@ -147,19 +114,29 @@ namespace cs_practice
 
         }
 
-        private static void InitializeGame(int windowSizeX, int windowSizeY, ref int point1XPosition, ref int point1YPosition, 
-                                    ref int point2XPosition, ref int point2YPosition, ref int point3XPosition, ref int point3YPosition)
+        private static void InitializeGame(int windowSizeX, int windowSizeY, int[,] points)
         {
             Random random = new Random();
+            int i, j;
 
             CursorVisible = false;
             SetWindowSize(windowSizeX, windowSizeY);
-            point1XPosition = random.Next(5, windowSizeX - 5);
-            point1YPosition = random.Next(5, windowSizeY - 5);
-            point2XPosition = random.Next(5, windowSizeX - 5);
-            point2YPosition = random.Next(5, windowSizeY - 5);
-            point3XPosition = random.Next(5, windowSizeX - 5);
-            point3YPosition = random.Next(5, windowSizeY - 5);
+            for( i = 0; i < points.GetLength(0); i++)
+            {
+                while(true)
+                {
+                    points[i, 0] = random.Next(5, windowSizeX - 5);
+                    points[i, 1] = random.Next(5, windowSizeY - 5);
+                    for( j = 0; j < i; j++ )
+                    {
+                        if (points[j, 0] == points[i, 0] && points[j, 1] == points[i, 1])
+                            break;
+                    }
+                    if (j == i) 
+                        break;
+                }
+                points[i, 2] = 1;
+            }
         }
 
         private static void PrintEnding(int windowSizeX, int windowSizeY)
