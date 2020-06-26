@@ -12,14 +12,15 @@ namespace cs_practice
     class Program
     {
         //야구게임 제한턴수9
-        //int.TryParse(ReadLine(), out scores[i])
         static void Main(string[] args)
         {
-            int windowSizeX = 100;
-            int windowSizeY = 40;
+            int windowSizeX = 70;
+            int windowSizeY = 30;
+            int[] answerArr;
+            bool isTestMode = true;
 
             //초기화 및 설정
-
+            answerArr = InitializeGame(windowSizeX, windowSizeY, ref isTestMode);
 
 
             //플레이
@@ -31,7 +32,15 @@ namespace cs_practice
 
         }
 
-        static int getRangedIntInput(int min, int max)
+        private static int[] InitializeGame(int windowSizeX, int windowSizeY, ref bool isTestMode)
+        {
+            SetWindowSize(windowSizeX, windowSizeY);
+            WriteLine("재미있는 야구 게임 시작합니다");
+
+
+        }
+
+        static int GetRangedIntInput(int min, int max)
         {
             int intInput = -99999999;
             while (true)
