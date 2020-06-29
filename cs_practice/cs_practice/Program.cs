@@ -143,10 +143,7 @@ namespace cs_practice
                         break;
                 }
                 if (i != j)
-                {
                     i--;
-                    continue;
-                }
             }
             return answerArr;
         }
@@ -166,7 +163,7 @@ namespace cs_practice
         //오버로딩 활용
         static int GetRangedIntInput(int min, int max, string errorMessage)
         {
-            int intInput = -99999999;
+            int intInput = int.MaxValue;
             while (true)
             {
                 if (!int.TryParse(ReadLine(), out intInput))
@@ -183,7 +180,7 @@ namespace cs_practice
 
         static int GetRangedIntInput(int min, int max)
         {
-            int intInput = -99999999;
+            int intInput = int.MaxValue;
             while (true)
             {
                 if (!int.TryParse(ReadLine(), out intInput))
